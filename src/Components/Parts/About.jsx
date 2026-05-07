@@ -1,56 +1,57 @@
-import React from "react";
-
 function About() {
-  const Skills = [
+  const skills = [
     "React",
     "JavaScript",
-    "Nodejs",
+    "Node.js",
     "HTML",
     "Tailwind",
-    "Git & Github",
+    "Git & GitHub",
   ];
 
   return (
     <section
       id="about"
-      className="min-h-screen flex justify-center items-center py-20"
+      className="flex min-h-screen items-center justify-center py-20"
     >
-      <div className="max-w-3xl mx-auto px-4">
-        <h1 className="font-bold text-center text-3xl bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-right">
+      <div className="mx-auto max-w-3xl px-4">
+        <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-center text-3xl font-bold text-transparent">
           About Me
         </h1>
 
-        <div className="rounded-xl p-4 border border-white/10 hover:-translate-y-1 transition-all mt-4">
-          <p className="mb-6">
+        <div className="mt-4 rounded-xl border border-white/10 p-4 transition-all hover:-translate-y-1">
+          <p className="mb-6 text-gray-300">
             Aspiring web developer and IT student, learning Web Development and
             building practical, user-friendly web solutions.
           </p>
 
-          <div className="rounded-xl py-6 px-10 hover:-translate-y-1 transition-all">
-            <h1 className="text-2xl font-bold">💡Skills</h1>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {Skills.map((i, key) => (
+          <div className="rounded-xl px-0 py-6 transition-all sm:px-6">
+            <h2 className="text-2xl font-bold">Skills</h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {skills.map((skill) => (
                 <span
-                  key={key}
-                  className="bg-blue-500/10 text-blue-500 rounded-3xl px-5 py-3"
+                  key={skill}
+                  className="rounded-3xl bg-blue-500/10 px-5 py-3 text-blue-400"
                 >
-                  {i}
+                  {skill}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="rounded-xl py-6 px-10 hover:-translate-y-1 transition-all">
-            <h1 className="text-2xl font-bold">🏫 Education</h1>
-            <div className="flex flex-wrap gap-2 mt-4">
-              <ul className="list-disc list-inside leading-[1.6]">
+          <div className="rounded-xl px-0 py-6 transition-all sm:px-6">
+            <h2 className="text-2xl font-bold">Education</h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <ul className="list-inside list-disc leading-[1.8] text-gray-300">
                 <li>
-                  <strong>Bachelor of Science in Information Technology (BSc-IT)Bachelor of Science in Information Technology (BSc-IT)</strong> -
-                  Mumbai University
+                  <strong>
+                    Bachelor of Science in Information Technology (BSc-IT)
+                  </strong>{" "}
+                  - Mumbai University
                 </li>
                 <li>
-                  <strong>Relavent Courwork</strong>: Earned Bootstrap certification in
-                  responsive and component-based front-end design.
+                  <strong>Relevant Coursework</strong>: Earned Bootstrap
+                  certification in responsive and component-based front-end
+                  design.
                 </li>
               </ul>
             </div>

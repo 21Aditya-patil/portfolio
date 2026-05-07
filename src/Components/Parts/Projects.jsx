@@ -1,50 +1,55 @@
-import React from "react";
-import Projectboxes from "./Projectboxes"
-import { useState } from "react";
+import Projectboxes from "./Projectboxes";
+
+const projects = [
+  {
+    name: "LoopIn - College Social Networking Platform",
+    description:
+      "Built a full-stack real-time social platform for college communities with announcements, events, and student updates. Implemented JWT authentication and role-based access control for admin, faculty, and student roles.",
+    github: "https://github.com/21Aditya-patil/LoopIn",
+    live: "https://loop-in-bice.vercel.app/",
+    skills: ["MongoDB", "Express.js", "React", "Node.js", "Tailwind CSS"],
+  },
+  {
+    name: "Imagger - AI Text to Image Generator",
+    description:
+      "Built an AI-powered web app generating images from natural language prompts via the Stability AI REST API. Handled async API responses with loading states, error fallbacks, and a responsive dynamic UI.",
+    github: "https://github.com/21Aditya-patil/Imagger-AI-Image-Generator",
+    live: "https://imagger-ai-image-generator.vercel.app/",
+    skills: ["React.js", "Node.js", "External API", "Tailwind CSS"],
+  },
+  {
+    name: "Lead Management System - Mini CRM",
+    description:
+      "Developed a full-stack CRM with CRUD operations, status pipeline, and RESTful APIs backed by a relational PostgreSQL schema. Built a responsive dashboard for lead tracking, filtering, and status management.",
+    github: "https://github.com/21Aditya-patil/lead-manager",
+    live: "https://github.com/21Aditya-patil/lead-manager",
+    skills: ["PostgreSQL", "Express.js", "React.js", "Node.js"],
+  },
+  {
+    name: "Weather App",
+    description:
+      "This simple weather app, built using HTML, CSS, and JavaScript, allows you to easily check the weather conditions of various cities.",
+    github: "https://github.com/21Aditya-patil/weather-app",
+    live: "https://weather-app-seven-chi-79.vercel.app/",
+    skills: ["Javascript", "API", "HTML"],
+  },
+];
 
 function Projects() {
-  const [name, setName] = useState("")
-  const [disc, setDisc] = useState("")
-  const [links, setLinks] = useState("")
-  const [skills, setSkills] = useState([])
   return (
     <section
       id="projects"
-      className="min-h-screen flex justify-center items-center py-20"
+      className="flex min-h-screen items-center justify-center py-20"
     >
-      <div className="max-w-3xl mx-auto px-4">
-        <h1 className="font-bold text-center text-3xl bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-right">
+      <div className="mx-auto max-w-3xl px-4">
+        <h1 className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-center text-3xl font-bold text-transparent">
           Projects
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-          <Projectboxes 
-          setName={"Github Profile Explorer"}
-          setDisc={"Built a React-based web app to explore GitHub profiles via search and navigate to user profiles. This project helped me refresh my React skills."}
-          setLinks={"https://github-profile-explorer-woad.vercel.app/"}
-          setSkills={["React", "Tailwind", "API"]}
-          />
-
-          <Projectboxes 
-          setName={"Weather App"}
-          setDisc={"This simple weather app, built using HTML, CSS, and JavaScript, allows you to easily check the weather conditions of various cities."}
-          setLinks={"https://weather-app-seven-chi-79.vercel.app/"}
-          setSkills={["Javascript", "API", "HTML"]}
-          /> 
-
-          <Projectboxes 
-          setName={"Landing Page"}
-          setDisc={"Created a landing page of shoe brand using React, HTML and CSS."}
-          setLinks={"https://landing-page-orcin-delta.vercel.app/"}
-          setSkills={["React", "Tailwind", "API"]}
-          />
-
-          <Projectboxes 
-          setName={"Dice Game"}
-          setDisc={"The simple dice game where we have to guess the number displayed on dice"}
-          setLinks={"https://dice-game-delta-vert.vercel.app/"}
-          setSkills={["React", "Tailwind", "HTML"]}
-          />
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {projects.map((project) => (
+            <Projectboxes key={project.name} {...project} />
+          ))}
         </div>
       </div>
     </section>

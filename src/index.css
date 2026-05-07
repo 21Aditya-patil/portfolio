@@ -10,6 +10,17 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Space Grotesk", sans-serif;
+    min-width: 320px;
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#root {
+    min-height: 100vh;
 }
 
 @layer utilities {
@@ -49,7 +60,7 @@ body {
     }
 
     .wrapit.zoomed {
-        transform: scale(30.5); /* Increase scale for full screen effect */
+        transform: scale(30.5);
         z-index: 60;
         opacity: 0.1;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);

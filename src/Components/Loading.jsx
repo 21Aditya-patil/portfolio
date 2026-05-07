@@ -1,43 +1,48 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const Loading = ({ onDone }) => {
   const [text, setText] = useState("");
-  const [zoomed, setZoomed] = useState(false); // Add zoomed state
-  const fulltext = "addy.Dev";
+  const [zoomed, setZoomed] = useState(false);
+  const fullText = "addy.Dev";
 
   useEffect(() => {
     let index = 0;
-    const interval = setInterval(() => {
-      setText(fulltext.substring(0, index));
-      index++;
+    let zoomTimer;
+    let doneTimer;
 
-      if (index > fulltext.length) {
+    const interval = setInterval(() => {
+      setText(fullText.substring(0, index));
+      index += 1;
+
+      if (index > fullText.length) {
         clearInterval(interval);
 
-        setTimeout(() => {
-          setZoomed(true); // Trigger zoom
-          setTimeout(() => {
-            onDone();
-          }, 600); // Wait for zoom animation before onDone
+        zoomTimer = setTimeout(() => {
+          setZoomed(true);
+          doneTimer = setTimeout(onDone, 600);
         }, 1000);
       }
     }, 100);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(zoomTimer);
+      clearTimeout(doneTimer);
+    };
   }, [onDone]);
 
   return (
     <div
-      className={`fixed inset-0 z-50 bg-black text-gray-100 flex flex-col justify-center items-center wrapit${
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-gray-100 wrapit${
         zoomed ? " zoomed" : ""
       }`}
     >
-      <div className="mb-4 text-4xl font- bold">
+      <div className="mb-4 text-4xl font-bold">
         {text}
-        <span className="animate-blink ml-1"> | </span>
+        <span className="ml-1 animate-blink">|</span>
       </div>
-      <div className="w-[200px] h-1 bg-gray-800 rounded relative overflow-hidden">
-        <div className="w-[40%] h-full  bg-blue-500 shadow-[0_0_15px_blue] animate-loading-bar"></div>
+      <div className="relative h-1 w-[200px] overflow-hidden rounded bg-gray-800">
+        <div className="h-full w-[40%] animate-loading-bar bg-blue-500 shadow-[0_0_15px_blue]" />
       </div>
     </div>
   );

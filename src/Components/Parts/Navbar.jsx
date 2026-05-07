@@ -1,151 +1,130 @@
-import React, { useEffect } from "react";
-import { FiMenu } from "react-icons/fi";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
+import { useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FiMenu } from "react-icons/fi";
 
 function Navbar({ menuOpen, setMenuOpen }) {
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
+
+  const navLinks = [
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
     <>
-      <div className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16 ">
-            <a href="#home" className="font-bold text-xl transition-all hover:-translate-y-0.5">
+      <header className="fixed top-0 z-40 w-full border-b border-white/10 bg-[rgba(10,10,10,0.8)] shadow-lg backdrop-blur-lg">
+        <nav className="mx-auto max-w-5xl px-4">
+          <div className="flex h-16 items-center justify-between">
+            <a
+              href="#home"
+              className="text-xl font-bold transition-all hover:-translate-y-0.5"
+            >
               addy
-              <span className="bg-gradient-to-r font-bold text-2xl from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-right">
+              <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-2xl font-bold text-transparent">
                 .Dev
               </span>
             </a>
 
-            <div
-              className="md:hidden cursor-pointer z-40"
+            <button
+              type="button"
+              className="z-40 cursor-pointer text-2xl md:hidden"
               onClick={() => setMenuOpen((prev) => !prev)}
+              aria-label="Open navigation menu"
             >
               <FiMenu />
-            </div>
+            </button>
 
-            <div className="hidden md:flex items-center gap-8">
-              <a
-                href="#home"
-                className="text-white hover:text-blue-500 transition-all hover:-translate-y-0.5"
-              >
-                Home
-              </a>
-              <a
-                href="#about"
-                className="text-white hover:text-blue-500 transition-all hover:-translate-y-0.5"
-              >
-                About
-              </a>
-              <a
-                href="#projects"
-                className="text-white hover:text-blue-500 transition-all hover:-translate-y-0.5"
-              >
-                Projects
-              </a>
-              <a
-                href="#contact"
-                className="text-white hover:text-blue-500 transition-all hover:-translate-y-0.5"
-              >
-                Contact
-              </a>
+            <div className="hidden items-center gap-8 md:flex">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-white transition-all hover:-translate-y-0.5 hover:text-blue-500"
+                >
+                  {link.label}
+                </a>
+              ))}
+
               <a
                 href="https://github.com/21Aditya-patil"
-                className="text-white text-2xl hover:text-blue-500 transition-all hover:-translate-y-0.5"
+                className="text-2xl text-white transition-all hover:-translate-y-0.5 hover:text-blue-500"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub profile"
               >
                 <FaGithub />
               </a>
               <a
                 href="https://www.linkedin.com/in/aditya-patil-280891281/"
-                className="text-white text-2xl hover:text-blue-500 transition-all hover:-translate-y-0.5"
+                className="text-2xl text-white transition-all hover:-translate-y-0.5 hover:text-blue-500"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn profile"
               >
                 <FaLinkedin />
               </a>
             </div>
           </div>
-        </div>
-      </div>
+        </nav>
+      </header>
 
       <div
-        className={`fixed w-full top-0 left-0 bg-[rgba(10,10,10,0.8)] z-40 backdrop-blur-3xl flex flex-col justify-center items-center transition-all duration-500 ease-in-out
-            ${
-              menuOpen
-                ? "h-screen opacity-100 pointer-events-auto"
-                : "h-0 opacity-0 pointer-events-none"
-            }
-          `}
+        className={`fixed left-0 top-0 z-40 flex w-full flex-col items-center justify-center bg-[rgba(10,10,10,0.9)] backdrop-blur-3xl transition-all duration-500 ease-in-out ${
+          menuOpen
+            ? "h-screen opacity-100 pointer-events-auto"
+            : "h-0 opacity-0 pointer-events-none"
+        }`}
       >
         <button
+          type="button"
           onClick={() => setMenuOpen(false)}
-          className="absolute top-6 right-6 text-white text-3xl cursor-pointer z-50"
+          className="absolute right-6 top-6 z-50 cursor-pointer text-3xl text-white"
+          aria-label="Close navigation menu"
         >
           <AiOutlineClose />
         </button>
 
-        <a
-          href="#home"
-          onClick={() => setMenuOpen(false)}
-          className={`text-3xl font-semibold transform transition-transform duration-300 text-white my-4
-                ${
-                  menuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                }`}
-        >
-          Home
-        </a>
-        <a
-          href="#about"
-          onClick={() => setMenuOpen(false)}
-          className={`text-3xl font-semibold transform transition-transform duration-300 text-white my-4
-                ${
-                  menuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                }`}
-        >
-          About
-        </a>
-        <a
-          href="#projects"
-          onClick={() => setMenuOpen(false)}
-          className={`text-3xl font-semibold transform transition-transform duration-300 text-white my-4
-                ${
-                  menuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                }`}
-        >
-          Projects
-        </a>
-        <a
-          href="#contact"
-          onClick={() => setMenuOpen(false)}
-          className={`text-3xl font-semibold transform transition-transform duration-300 text-white my-4
-                ${
-                  menuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                }`}
-        >
-          Contact
-        </a>
-        <div className="flex gap-4">
+        {navLinks.map((link) => (
           <a
-                href="https://github.com/21Aditya-patil"
-                className="text-white hover:text-blue-500 transition-colors"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/aditya-patil-280891281/"
-                className="text-white hover:text-blue-500 transition-colors"
-              >
-                <FaLinkedin />
-              </a>
+            key={link.href}
+            href={link.href}
+            onClick={() => setMenuOpen(false)}
+            className={`my-4 text-3xl font-semibold text-white transition-all duration-300 ${
+              menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+            }`}
+          >
+            {link.label}
+          </a>
+        ))}
+
+        <div className="mt-4 flex gap-5 text-3xl">
+          <a
+            href="https://github.com/21Aditya-patil"
+            className="text-white transition-colors hover:text-blue-500"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub profile"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/aditya-patil-280891281/"
+            className="text-white transition-colors hover:text-blue-500"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn profile"
+          >
+            <FaLinkedin />
+          </a>
         </div>
       </div>
     </>
